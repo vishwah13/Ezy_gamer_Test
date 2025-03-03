@@ -5,7 +5,7 @@ A repo for Ezy_gamer_Test
 
 * Scriptable object is used a data containers for storing the screen informations
 
-##Instructions on how to use the Tool
+## Instructions on how to use the Tool
 
 * Right click at asset window Create->Scriptable Objects->LevelData
 ![Screenshot 2025-03-03 174116](https://github.com/user-attachments/assets/bc98fe56-55e0-4b6c-830b-eeb34cb223ae)
