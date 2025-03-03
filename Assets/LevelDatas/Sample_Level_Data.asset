@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _questionVideoClip: {fileID: 32900000, guid: 04a06c1ebc0e8b04c9f3543acb3bcb1e, type: 3}
   _Option_1:
-    optionText: something1
+    optionText: Test ans 1
     videoToPlay: {fileID: 32900000, guid: 2e546199a03736d4085d3c76a44de1a7, type: 3}
     isAnswer: 1
   _Option_2:
-    optionText: something2
+    optionText: Test ans 2
     videoToPlay: {fileID: 32900000, guid: d52403184b5b8d34f80d8b26c6e5c840, type: 3}
     isAnswer: 0

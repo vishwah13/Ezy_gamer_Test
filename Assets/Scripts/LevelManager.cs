@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.Video;
 using GameLevel.data;
 using Vishwah.ScriptableEvents;
+using System.Collections;
 
 [RequireComponent(typeof(VideoPlayer))]
 public class LevelManager : MonoBehaviour
@@ -40,20 +41,14 @@ public class LevelManager : MonoBehaviour
     {
         if (_isAnswerCorrect)
         {
-            //TO:DO need to do screen transitioning effect
             _levelCount++;
 
-            if (/*levelData[_levelCount] != null &&*/ _levelCount <= levelData.Length)
+            if (_levelCount <= levelData.Length)
             {
                 getLevelDataToScreen(_levelCount);
                 _videoPlayer.Play();
                 _screenChangeEvent.Raise();
             }
-            else
-            {
-                //show end screen and ask the user re-try again
-            }
-          
             
             _isAnswerCorrect = false;
         }
@@ -76,7 +71,8 @@ public class LevelManager : MonoBehaviour
         _videoPlayer.Play();
         if (_option_1.isAnswer)
         {
-            _isAnswerCorrect = true;
+            //_isAnswerCorrect = true;
+            StartCoroutine(waitForVideo());
             _optionText_1.text = "CORRECT !";
         }
         else
@@ -93,13 +89,20 @@ public class LevelManager : MonoBehaviour
         _videoPlayer.Play();
         if (_option_2.isAnswer)
         {
-            _isAnswerCorrect = true;
+            //_isAnswerCorrect = true;
+            StartCoroutine(waitForVideo());
             _optionText_2.text = "CORRECT !";
         }
         else
         {
             _optionText_2.text = "WRONG !";
         }
+    }
+
+    IEnumerator waitForVideo()
+    {
+        yield return new WaitForSeconds(5.0f);
+        _isAnswerCorrect = true;
     }
 
 }
