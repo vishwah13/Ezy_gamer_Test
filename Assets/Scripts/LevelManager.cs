@@ -4,6 +4,7 @@ using UnityEngine.Video;
 using GameLevel.data;
 using Vishwah.ScriptableEvents;
 using System.Collections;
+using System;
 
 [RequireComponent(typeof(VideoPlayer))]
 public class LevelManager : MonoBehaviour
@@ -23,6 +24,9 @@ public class LevelManager : MonoBehaviour
     private LevelData.option _option_1;
     private LevelData.option _option_2;
 
+    public event Action FirstOptionEvent;
+    public event Action SecondOptionEvent;
+
     private bool _isAnswerCorrect = true;
     private int _levelCount = -1;
 
@@ -32,7 +36,8 @@ public class LevelManager : MonoBehaviour
         if(_videoPlayer == null)
             _videoPlayer = GetComponent<VideoPlayer>();
 
-        //_videoPlayer.clip = levelData[0];
+        FirstOptionEvent += pressedOption1;
+        SecondOptionEvent += pressedoption2;
 
     }
 
@@ -63,7 +68,7 @@ public class LevelManager : MonoBehaviour
         _optionText_2.text = _option_2.optionText;
     }
 
-    public void firstOptionTrigger()
+    void pressedOption1()
     {
         Debug.Log("OPTION 1 TRIGGRED");
 
@@ -81,7 +86,7 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    public void secondOptionTrigger()
+    void pressedoption2()
     {
         Debug.Log("OPTION 2 TRIGGRED");
 
@@ -97,6 +102,16 @@ public class LevelManager : MonoBehaviour
         {
             _optionText_2.text = "WRONG !";
         }
+    }
+
+    public void firstOptionTrigger()
+    {
+        FirstOptionEvent?.Invoke();
+    }
+
+    public void secondOptionTrigger()
+    {
+        SecondOptionEvent?.Invoke();
     }
 
     IEnumerator waitForVideo()
